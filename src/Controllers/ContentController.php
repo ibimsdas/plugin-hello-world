@@ -43,8 +43,8 @@ class ContentController extends Controller
 	public function outputProducts()
 	{
 		$apiKey = $this->request->get('apiKey', '');
-		if (!strlen($apiKey) && $apiKey !== 'dummy') {
-			return $this->response->make('missing/wrong api key', Response::HTTP_BAD_REQUEST);
+		if (!strlen($apiKey) || $apiKey !== 'dummy') {
+			return $this->response->json(['error' => ['code' => time(), 'message' => 'missing/wrong api key']], Response::HTTP_BAD_REQUEST);
 		}
 
 		$products = [
