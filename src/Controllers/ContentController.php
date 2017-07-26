@@ -35,9 +35,9 @@ class ContentController extends Controller
 	}
 
 	/**
-	 * @return string
+	 * @return Response
 	 */
-	public function outputProducts(): string
+	public function outputProducts()
 	{
 		$apiKey = $this->request->get('apiKey', '');
 		if (!strlen($apiKey) && $apiKey !== 'dummy') {
