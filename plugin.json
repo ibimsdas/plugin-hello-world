@@ -2,7 +2,7 @@
       "name":"HelloWorld",
       "description":"My first plugin",
       "namespace":"HelloWorld",
-      "author":"Christian Moll",
+      "author":"Max Mustermann",
       "type":"template",
       "serviceProvider":"HelloWorld\\Providers\\HelloWorldServiceProvider"
 }
