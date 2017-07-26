@@ -15,7 +15,7 @@ class HelloWorldRouteServiceProvider extends RouteServiceProvider
 	 */
 	public function map(Router $router)
 	{
-		$router->get('export/products', 'HelloWorld\Controllers\ContentController@outputProducts');
+		$router->get('dummy/products', 'HelloWorld\Controllers\ContentController@outputProducts');
 	}
 
 }
