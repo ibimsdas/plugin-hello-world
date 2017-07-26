@@ -26,6 +26,18 @@ class ContentController extends Controller
 	private $response;
 
 	/**
+	 * @var array
+	 */
+	private $errors = [
+		'I would like a table near to the window.',
+		'Excuse me, this is my stop.',
+		'Her name is Elisabeth.',
+		'I advise you to go to hospital.',
+		'This is my father.',
+		'Can you tell me where I can buy some cheese, please.'
+	];
+
+	/**
 	 * ContentController constructor.
 	 *
 	 * @param Request $request
@@ -44,7 +56,13 @@ class ContentController extends Controller
 	{
 		$apiKey = $this->request->get('apiKey', '');
 		if (!strlen($apiKey) || $apiKey !== 'dummy') {
-			return $this->response->json(['error' => ['code' => time(), 'message' => 'missing/wrong api key']], Response::HTTP_BAD_REQUEST);
+			$data = [
+				'error' => [
+					'code' => time(),
+					'message' => $this->errors[rand(0, 5)]
+				]
+			];
+			return $this->response->json($data, Response::HTTP_BAD_REQUEST);
 		}
 
 		$products = [
