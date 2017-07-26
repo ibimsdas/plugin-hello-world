@@ -4,6 +4,7 @@ namespace HelloWorld\Controllers;
 use Plenty\Plugin\Controller;
 use Plenty\Plugin\Http\Request;
 use Plenty\Plugin\Http\Response;
+use Plenty\Plugin\Log\Loggable;
 
 /**
  * Class ContentController
@@ -11,6 +12,8 @@ use Plenty\Plugin\Http\Response;
  */
 class ContentController extends Controller
 {
+
+	use Loggable;
 
 	/**
 	 * @var Request
@@ -41,7 +44,7 @@ class ContentController extends Controller
 	{
 		$apiKey = $this->request->get('apiKey', '');
 		if (!strlen($apiKey) && $apiKey !== 'dummy') {
-			$this->response->make('missing/wrong api key', Response::HTTP_BAD_REQUEST);
+			return $this->response->make('missing/wrong api key', Response::HTTP_BAD_REQUEST);
 		}
 
 		$products = [
@@ -55,9 +58,9 @@ class ContentController extends Controller
 		];
 
 		$callback = function($value) {
-			return implode('\t', $value);
+			return implode("\t", $value);
 		};
-		$content = implode('\n', array_map($callback, $products));
+		$content = implode("\n", array_map($callback, $products));
 
 		return $this->response->make($content);
 	}
