@@ -76,10 +76,10 @@ class ContentController extends Controller
 		];
 
 		$callback = function($value) {
-			return implode("\t", $value);
+			return implode(";", $value);
 		};
 		$content = implode("\n", array_map($callback, $products));
 
-		return $this->response->make($content);
+		return $this->response->make($content, Response::HTTP_OK, ['Content-Type: text/csv; charset=UTF-8']);
 	}
 }
