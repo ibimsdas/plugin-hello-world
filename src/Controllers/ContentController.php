@@ -65,6 +65,11 @@ class ContentController extends Controller
 			return $this->response->json($data, Response::HTTP_BAD_REQUEST);
 		}
 
+		// HTTP-Headers
+		$headers = [
+			'Content-Type' => 'text/csv; charset=UTF-8'
+		];
+
 		$products = [
 			['item_number', 'name', 'lang', 'price', 'recommendation'],
 			['000-000-001', 'Produkt 1', 'de_DE', 1000, ''],
@@ -80,6 +85,6 @@ class ContentController extends Controller
 		};
 		$content = implode("\n", array_map($callback, $products));
 
-		return $this->response->make($content, Response::HTTP_OK, ['Content-Type: text/csv; charset=UTF-8']);
+		return $this->response->make($content, Response::HTTP_OK, $headers);
 	}
 }
